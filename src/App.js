@@ -15,19 +15,18 @@ export default class App extends Component {
   render() {
     return (
       <Router>
-      <div>
+        <div>
           <Header />
-          <Link to="/">List Pokemon</Link>
-          <Link to="/about-me/">about</Link>
+          <Link to="/">List Pokemon</Link><br />
+          <Link to="/about/">about</Link>
           <Switch>
-              <Route exact path="/:pokemon?" component={List} />  
-              <Route exact path="/about-me/" component={About} />
-              <Route exact path="/pokemon/:pokeId" component={Detail} />
-              {/* <Route component={NotFound}/> */}
+            <Route exact path="/:pokemon?" component={List} />  
+            <Route exact path="/about/" component={About} />
+            <Route exact path="/pokemon/:pokeId" component={Detail} />
           </Switch>
 
-      </div>
-  </Router>
+        </div>
+      </Router>
     )
   }
 }

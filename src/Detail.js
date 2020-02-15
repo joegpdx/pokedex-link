@@ -3,7 +3,7 @@ import { getPokemon } from './api.js'
 import PokeItem from './PokeItem.js';
 
 export default class Detail extends Component {
-    state = { pokedex: {} }
+    state = { pokemon: {} }
 
     async componentDidMount() {
         const data = await getPokemon(this.props.match.params.pokemon);

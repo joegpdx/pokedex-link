@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Paging from './Paging.js';
 import request from 'superagent';
 import PokeItem from './PokeItem.js';
 import SearchBar from './SearchBar.js';
 import { Link } from 'react-router-dom'
+import './App.css';
 
 export default class List extends Component {
 
@@ -38,13 +38,13 @@ export default class List extends Component {
     
         return (
             <div className="App">
-          <header className="App-header">
+          <nav className="App-nav">
             <SearchBar 
                 searchQuery={this.state.searchQuery}
                 handleSearch={this.handleSearch} 
                 handleChange={this.handleChange}
             />
-          </header>
+          </nav>
           <ul>
               {
                     this.state.pokedex.map(pokedex => 
