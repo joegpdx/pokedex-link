@@ -6,21 +6,21 @@ export default class Detail extends Component {
     state = { pokemon: {} }
 
     async componentDidMount() {
-        const data = await getPokemon(this.props.match.params.pokemon);
+        const data = await getPokemon(this.props.match.params.pokeId);
         
         if (data.body.results) {
 
 
-        this.setState({ pokedex: data.body.results[0] })
+        this.setState({ pokemon: data.body.results[0] })
             
         }
     }
 
     render() {
-        const { pokedex } = this.state;
+        const { pokemon } = this.state;
 
         return (
-            <PokeItem pokedex={ pokedex } />
+            <PokeItem pokemon={ pokemon } />
       );
     }
 }
