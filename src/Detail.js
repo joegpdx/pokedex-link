@@ -7,9 +7,8 @@ export default class Detail extends Component {
 
     async componentDidMount() {
         const data = await getPokemon(this.props.match.params.pokeId);
-        
-        if (data.body.results) {
 
+        if (data.body.results) {
 
         this.setState({ pokemon: data.body.results[0] })
             
@@ -20,7 +19,7 @@ export default class Detail extends Component {
         const { pokemon } = this.state;
 
         return (
-            <PokeItem pokemon={ pokemon } />
+            <PokeItem pokedex={ pokemon } />
       );
     }
 }

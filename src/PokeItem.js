@@ -10,12 +10,11 @@ export default class PokeItem extends React.Component {
             defense
         } = pokedex;
 
-        console.log(pokedex)
         return (
             <li>
                 <div>
-                    <p><img alt='' src={ url_image } /></p>
                     <p>Pokemon: { pokemon }</p>
+                    <p><img alt='' src={ url_image } /></p>
                     <p>Attack: { attack }</p>
                     <p>Defense: { defense }</p>
                 </div>

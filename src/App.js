@@ -22,9 +22,8 @@ export default class App extends Component {
           <Switch>
             <Route exact path="/:pokemon?" component={List} />  
             <Route exact path="/about/:other" component={About} />
-            <Route exact path="/pokemon/:pokeId" component={Detail} />
+            <Route exact path="/pokedex/pokemon/:pokeId" component={Detail} />
           </Switch>
-
         </div>
       </Router>
     )

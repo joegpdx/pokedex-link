@@ -47,9 +47,9 @@ export default class List extends Component {
           </nav>
           <ul>
               {
-                    this.state.pokedex.map(pokedex => 
-                    <Link to={`pokedex/${pokedex.pokemon}`}> 
-                        <PokeItem pokedex={pokedex} />
+                    this.state.pokedex.map(poke => 
+                    <Link to={`pokedex/pokemon/${poke.pokemon}`}> 
+                        <PokeItem pokedex={poke} />
                     </Link>)
               }
           </ul>
