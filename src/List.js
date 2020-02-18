@@ -1,0 +1,62 @@
+import React, { Component } from 'react'
+import request from 'superagent';
+import PokeItem from './PokeItem.js';
+import SearchBar from './SearchBar.js';
+import { Link } from 'react-router-dom'
+import './App.css';
+
+export default class List extends Component {
+
+    state = { 
+        searchQuery: this.props.match.params.pokemon,
+        pokedex: [],
+        pokemon: ''
+     }
+     // when the component initially mounts . . .
+     async componentDidMount() {
+          // if there is a pokemon in the URL . . .
+         if (this.props.match.params.pokemon) {
+             const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?pokemon=${this.props.match.params.pokemon}`)
+     
+             this.setState({ pokedex: data.body.results })
+         }
+     }
+
+    handleSearch = async (e) => {
+        e.preventDefault();
+
+        const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?pokemon=${this.state.searchQuery}`)
+
+        this.setState({ 
+            pokedex: data.body.results, })
+        
+
+     this.props.history.push(this.state.searchQuery)
+
+    }
+    
+    handleChange = (e) => this.setState({ searchQuery: e.target.value })
+    render() {
+    
+        return (
+            <div className="App">
+          <nav className="App-nav">
+            {/* pass some callbacks so we can manipulate parent state from the child */}
+            <SearchBar 
+                searchQuery={this.state.searchQuery}
+                handleSearch={this.handleSearch} 
+                handleChange={this.handleChange}
+            />
+          </nav>
+          <ul>
+              {
+                    this.state.pokedex.map(poke => 
+                    <Link to={`pokedex/pokemon/${poke.pokemon}`}> 
+                        <PokeItem pokedex={poke} />
+                    </Link>)
+              }
+          </ul>
+        </div>
+        )
+    }
+}
