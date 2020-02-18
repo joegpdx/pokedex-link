@@ -20,8 +20,12 @@ export default class App extends Component {
           <Link to="/">List Pokemon</Link><br />
           <Link to="/about/other">about</Link>
           <Switch>
-            <Route exact path="/:pokemon?" component={List} />  
+            {/* anything without a question mark is assumed to be required in the URL */}
+            {/* if routes are like functions, colons indicate what is the 'parameter' of the route */}
+            <Route exact path="/:pokemon?" component={List} />
+            {/* adding the `about-me` piece prevents collisions with the :pokemon? route */}  
             <Route exact path="/about/:other" component={About} />
+            {/* adding the `detail` piece prevents collisions with the :pokemon? route */}
             <Route exact path="/pokedex/pokemon/:pokeId" component={Detail} />
           </Switch>
         </div>

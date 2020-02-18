@@ -10,9 +10,11 @@ export default class List extends Component {
     state = { 
         searchQuery: this.props.match.params.pokemon,
         pokedex: [],
+        pokemon: ''
      }
-
+     // when the component initially mounts . . .
      async componentDidMount() {
+          // if there is a pokemon in the URL . . .
          if (this.props.match.params.pokemon) {
              const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex/?pokemon=${this.props.match.params.pokemon}`)
      
@@ -32,13 +34,14 @@ export default class List extends Component {
      this.props.history.push(this.state.searchQuery)
 
     }
-
+    
     handleChange = (e) => this.setState({ searchQuery: e.target.value })
     render() {
     
         return (
             <div className="App">
           <nav className="App-nav">
+            {/* pass some callbacks so we can manipulate parent state from the child */}
             <SearchBar 
                 searchQuery={this.state.searchQuery}
                 handleSearch={this.handleSearch} 
